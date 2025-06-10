@@ -547,7 +547,7 @@ const SERVICES_CONFIG = {
         instruction: 'Ingresa tu correo principal de Disney+ para ver todos los mensajes de acceso y comunicaciones'
     },
     amazon: {
-        name: 'Prime Video',
+        name: 'Amazon u otros',
         icon: 'fa-solid fa-network-wired',
         iconClass: 'amazon',
         description: 'Mensajes de Prime Video y verificaciones de Amazon',
