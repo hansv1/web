@@ -548,7 +548,7 @@ const SERVICES_CONFIG = {
     },
     amazon: {
         name: 'Prime Video',
-        icon: 'fab fa-amazon',
+        icon: 'fa-solid fa-network-wired',
         iconClass: 'amazon',
         description: 'Mensajes de Prime Video y verificaciones de Amazon',
         instruction: 'Ingresa tu correo principal de Amazon para ver todos los mensajes de Prime Video y verificaciones'
