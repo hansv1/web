@@ -15,14 +15,15 @@ const TESTMAIL_CONFIG = {
 const STREAMING_FILTERS = {
     netflix: ['netflix', 'nflx', 'netflix.com', 'nflix', 'netflixtv'],
     disney: ['disney+', 'disney plus', 'disneyplus', 'disney', 'disney.com'],
-    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', , 'openai']
+    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', 'openai']
 };
 
-// Frases prohibidas en el contenido de los correos
-const BLOCKED_CONTENT_PHRASES = [
-    "cambiar la información de tu cuenta",
-    // Puedes agregar más frases aquí
-];
+// Frases prohibidas por servicio
+const BLOCKED_CONTENT_PHRASES = {
+    netflix: ['cambiar la información de tu cuenta', 'codigo'],
+    disney: [],
+    amazon: []
+};
 
 let currentService = null;
 let currentAlias = null;
@@ -225,16 +226,17 @@ async function loadMessagesFromTestMail(namespace, tag, fullAlias, showMessages 
     }
 }
 
-// Nueva función para revisar si el mensaje contiene frases bloqueadas
-function containsBlockedPhrase(message) {
+// Nueva función para revisar si el mensaje contiene frases bloqueadas por servicio
+function containsBlockedPhrase(message, service) {
+    const phrases = BLOCKED_CONTENT_PHRASES[service] || [];
     const text = ((message.text || '') + ' ' + (message.html || '')).toLowerCase();
-    return BLOCKED_CONTENT_PHRASES.some(phrase => text.includes(phrase.toLowerCase()));
+    return phrases.some(phrase => text.includes(phrase.toLowerCase()));
 }
 
-// Modificada para filtrar mensajes por servicio y además por frases bloqueadas
+// Modificada para filtrar mensajes por servicio y además por frases bloqueadas por servicio
 function filterMessagesByService(messages, service) {
     if (!service || !STREAMING_FILTERS[service]) {
-        return messages.filter(message => !containsBlockedPhrase(message));
+        return messages.filter(message => !containsBlockedPhrase(message, service));
     }
     const keywords = STREAMING_FILTERS[service];
     return messages
@@ -243,7 +245,7 @@ function filterMessagesByService(messages, service) {
             const from = (message.from || '').toLowerCase();
             return keywords.some(keyword => subject.includes(keyword.toLowerCase()) || from.includes(keyword.toLowerCase()));
         })
-        .filter(message => !containsBlockedPhrase(message)); // <-- Filtra los mensajes prohibidos
+        .filter(message => !containsBlockedPhrase(message, service));
 }
 
 async function fetchMessagesFromTestMailAPI(namespace, tag, fullAlias) {
