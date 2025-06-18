@@ -20,7 +20,7 @@ const STREAMING_FILTERS = {
 
 // Frases prohibidas por servicio
 const BLOCKED_CONTENT_PHRASES = {
-    netflix: ['cambiar la información de tu cuenta'],
+    netflix: ['cambiar la información de tu cuenta', 'finalizar una compra en tu cuenta'],
     disney: [],
     amazon: []
 };
