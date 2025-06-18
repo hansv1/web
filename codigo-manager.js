@@ -18,12 +18,12 @@ const STREAMING_FILTERS = {
     amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', , 'openai']
 };
 
-const BLOCKED_CONTENT_PHRASES = {
-    netflix: ['cambiar la información de tu cuenta'],
-    disney: [],
-    amazon: []
+// Frases prohibidas en el contenido de los correos
+const BLOCKED_CONTENT_PHRASES = [
+    "cambiar la información de tu cuenta",
+    // Puedes agregar más frases aquí
 ];
-        
+
 let currentService = null;
 let currentAlias = null;
 let currentPrincipalEmail = null;
@@ -231,6 +231,7 @@ function containsBlockedPhrase(message) {
     return BLOCKED_CONTENT_PHRASES.some(phrase => text.includes(phrase.toLowerCase()));
 }
 
+// Modificada para filtrar mensajes por servicio y además por frases bloqueadas
 function filterMessagesByService(messages, service) {
     if (!service || !STREAMING_FILTERS[service]) {
         return messages.filter(message => !containsBlockedPhrase(message));
@@ -363,12 +364,12 @@ function copyFullMessage() {
     if (!window.currentModalMessage) return;
     const message = window.currentModalMessage;
     const fullText = `
-Asunto: ${message.subject}
-De: ${message.from}
-Para: ${currentPrincipalEmail || message.to}
-Fecha: ${formatDate(message.timestamp, true)}
-
-${getTextFromHtml(message.html || message.text)}
+ Asunto: ${message.subject}
+ De: ${message.from}
+ Para: ${currentPrincipalEmail || message.to}
+ Fecha: ${formatDate(message.timestamp, true)}
+ 
+ ${getTextFromHtml(message.html || message.text)}
     `.trim();
     navigator.clipboard.writeText(fullText).then(() => {
         showToast('Mensaje completo copiado al portapapeles', 'success');
