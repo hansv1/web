@@ -18,6 +18,12 @@ const STREAMING_FILTERS = {
     amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', , 'openai']
 };
 
+const BLOCKED_CONTENT_PHRASES = {
+    netflix: ['cambiar la información de tu cuenta'],
+    disney: [],
+    amazon: []
+];
+        
 let currentService = null;
 let currentAlias = null;
 let currentPrincipalEmail = null;
@@ -219,16 +225,24 @@ async function loadMessagesFromTestMail(namespace, tag, fullAlias, showMessages 
     }
 }
 
+// Nueva función para revisar si el mensaje contiene frases bloqueadas
+function containsBlockedPhrase(message) {
+    const text = ((message.text || '') + ' ' + (message.html || '')).toLowerCase();
+    return BLOCKED_CONTENT_PHRASES.some(phrase => text.includes(phrase.toLowerCase()));
+}
+
 function filterMessagesByService(messages, service) {
     if (!service || !STREAMING_FILTERS[service]) {
-        return messages;
+        return messages.filter(message => !containsBlockedPhrase(message));
     }
     const keywords = STREAMING_FILTERS[service];
-    return messages.filter(message => {
-        const subject = (message.subject || '').toLowerCase();
-        const from = (message.from || '').toLowerCase();
-        return keywords.some(keyword => subject.includes(keyword.toLowerCase()) || from.includes(keyword.toLowerCase()));
-    });
+    return messages
+        .filter(message => {
+            const subject = (message.subject || '').toLowerCase();
+            const from = (message.from || '').toLowerCase();
+            return keywords.some(keyword => subject.includes(keyword.toLowerCase()) || from.includes(keyword.toLowerCase()));
+        })
+        .filter(message => !containsBlockedPhrase(message)); // <-- Filtra los mensajes prohibidos
 }
 
 async function fetchMessagesFromTestMailAPI(namespace, tag, fullAlias) {
