@@ -58,14 +58,18 @@ function initializeEventListeners() {
 function selectService(serviceKey) {
     currentService = serviceKey;
     const service = SERVICES_CONFIG[serviceKey];
+    
     const iconElement = document.getElementById('selectedServiceIcon');
-    iconElement.innerHTML = `<i class="${service.icon}"></i>`;
+    iconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-logo">`;
     iconElement.className = `service-icon-small ${service.iconClass}`;
+    
     document.getElementById('selectedServiceName').textContent = service.name;
     document.getElementById('selectedServiceDesc').textContent = service.description;
     document.getElementById('serviceInstructions').textContent = service.instruction;
+    
     showEmailInput();
 }
+
 
 function showServiceSelection() {
     document.getElementById('serviceSelection').classList.remove('hidden');
@@ -93,7 +97,8 @@ function showMessagesSection() {
     const platformNameElement = document.getElementById('selectedPlatformName');
     
     if (service && platformIconElement && platformNameElement) {
-        platformIconElement.innerHTML = `<i class="${service.icon}"></i>`;
+        // Usar imagen en lugar de icono
+        platformIconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-logo">`;
         platformIconElement.className = `service-icon-small ${service.iconClass}`;
         platformNameElement.textContent = service.name;
     }
@@ -103,6 +108,7 @@ function showMessagesSection() {
     document.getElementById('messagesSection').classList.remove('hidden');
     document.getElementById('inboxSection').classList.remove('hidden');
 }
+
 
 function backToServices() {
     currentService = null;
@@ -270,6 +276,36 @@ async function fetchMessagesFromTestMailAPI(namespace, tag, fullAlias) {
 
 function renderEmails(messages) {
     const emailList = document.getElementById('emailList');
+    
+    // Función auxiliar para formatear fechas
+    const formatEmailDate = (timestamp) => {
+        try {
+            let date = new Date(timestamp);
+            
+            if (typeof timestamp === 'number' && timestamp < 10000000000) {
+                date = new Date(timestamp * 1000);
+            }
+            
+            if (isNaN(date.getTime())) return 'Fecha inválida';
+            
+            const now = new Date();
+            const diffMs = now.getTime() - date.getTime();
+            const diffMinutes = Math.floor(diffMs / (1000 * 60));
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            
+            if (diffMs < 0) return date.toLocaleDateString('es-ES');
+            if (diffMinutes < 1) return 'Ahora';
+            if (diffMinutes < 60) return `${diffMinutes}min`;
+            if (diffHours < 24) return `${diffHours}h`;
+            if (diffDays < 7) return `${diffDays}d`;
+            return date.toLocaleDateString('es-ES');
+            
+        } catch (error) {
+            return 'Fecha inválida';
+        }
+    };
+    
     if (!messages || messages.length === 0) {
         const serviceName = SERVICES_CONFIG[currentService]?.name || 'este servicio';
         emailList.innerHTML = `
@@ -281,11 +317,12 @@ function renderEmails(messages) {
         `;
         return;
     }
+    
     emailList.innerHTML = messages.map(email => `
         <div class="email-item" onclick="openEmailModal('${email.id}')">
             <div class="email-header">
                 <div class="email-subject">${escapeHtml(email.subject || 'Sin asunto')}</div>
-                <div class="email-date">${formatDate(email.timestamp)}</div>
+                <div class="email-date">${formatEmailDate(email.timestamp)}</div>
             </div>
             <div class="email-from">De: ${escapeHtml(email.from || 'Desconocido')}</div>
             <div class="email-preview">${getEmailPreview(email)}</div>
@@ -293,14 +330,13 @@ function renderEmails(messages) {
     `).join('');
 }
 
+
 function openEmailModal(messageId) {
     const message = currentMessages?.find(m => m.id === messageId);
     if (!message) return;
     window.currentModalMessage = message;
     document.getElementById('modalSubject').textContent = message.subject || 'Sin asunto';
-    document.getElementById('modalFrom').textContent = message.from || 'Desconocido';
-    document.getElementById('modalTo').textContent = currentPrincipalEmail || message.to;
-    document.getElementById('modalDate').textContent = formatDate(message.timestamp, true);
+
     const contentDiv = document.getElementById('modalContent');
     if (message.html) {
         // Inyecta script para forzar target="_blank" en todos los enlaces del email
@@ -377,7 +413,6 @@ function copyFullMessage() {
  De: ${message.from}
  Para: ${currentPrincipalEmail || message.to}
  Fecha: ${formatDate(message.timestamp, true)}
- 
  ${getTextFromHtml(message.html || message.text)}
     `.trim();
     navigator.clipboard.writeText(fullText).then(() => {
@@ -397,7 +432,6 @@ async function refreshMessages() {
         if (aliasInfo) {
             showToastMessages = true;
             await loadMessagesFromTestMail(aliasInfo.namespace, aliasInfo.tag, currentAlias, true);
-            showToast('Mensajes actualizados', 'success');
         } else {
             showToast('Error: formato de alias inválido', 'error');
         }
@@ -519,12 +553,11 @@ function showLoading(show) {
 }
 
 function showToast(message, type = 'success') {
-        // Usar utilidades globales de HANS5 si están disponibles
-        if (window.HansWeb && window.HansWeb.Utils && window.HansWeb.Utils.showToast) {
-            window.HansWeb.Utils.showToast(message, type);
-            return;
-        }
-
+    // Usar utilidades globales de HANS5 si están disponibles
+    if (window.HansWeb && window.HansWeb.Utils && window.HansWeb.Utils.showToast) {
+        window.HansWeb.Utils.showToast(message, type);
+        return;
+    }
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
@@ -564,7 +597,7 @@ function handleApiError(error) {
 const SERVICES_CONFIG = {
     netflix: {
         name: 'Netflix',
-        icon: 'fa-solid fa-n',
+        image: 'img/Netflix41x41.webp',
         iconClass: 'netflix',
         description: 'Mensajes de verificación y notificaciones de Netflix',
         instruction: 'Ingresa tu correo principal de Netflix para ver todos los mensajes de verificación y notificaciones'
@@ -578,7 +611,7 @@ const SERVICES_CONFIG = {
     },
     amazon: {
         name: 'Amazon u otros',
-        icon: 'fa-solid fa-network-wired',
+        icon: 'fab fa-amazon',
         iconClass: 'amazon',
         description: 'Mensajes de Prime Video y verificaciones de otros servicios',
         instruction: 'Ingresa tu correo principal de Amazon para ver todos los mensajes de Prime Video y verificaciones'
