@@ -722,3 +722,25 @@
         word-break: break-all;
     }
 }
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: var(--secondary-color);
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: var(--text-secondary);
+    margin: 0 8px;
+}

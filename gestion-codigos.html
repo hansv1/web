@@ -106,6 +106,22 @@
             <div class="page-header">
                 <h1><i class="fas fa-key"></i> Gestión de Códigos</h1>
                 <p>Administra códigos de verificación de plataformas de streaming de forma automática</p>
+                <div class="purchase-process">
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <span>Selecciona un servicio</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <span>Ingresa el correo</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <span>Recibe el código</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Service Selection Section -->
@@ -118,39 +134,39 @@
                 <div class="streaming-services">
                     <div class="streaming-card" data-service="netflix" onclick="selectService('netflix')">
                         <div class="streaming-icon netflix">
-                            <i class="fa-solid fa-play"></i>
+                            <img src="img/unnamed.webp" alt="Netflix" class="service-logo">
                         </div>
                         <div class="streaming-content">
                             <h3>Netflix</h3>
                             <p>Ver mensajes completos de verificación y notificaciones de Netflix</p>
                             <div class="service-instruction">
-                                Ingresa tu correo principal de Netflix para acceder a todos los mensajes
+                                Ingresa tu correo principal de Netflix para acceder a todos los códigos de verificación y mensajes importantes
                             </div>
                         </div>
                     </div>
 
                     <div class="streaming-card" data-service="disney" onclick="selectService('disney')">
                         <div class="streaming-icon disney">
-                            <i class="fa-solid fa-tv"></i>
+                            <img src="img/Disney+.webp" alt="Disney" class="service-logo">
                         </div>
                         <div class="streaming-content">
                             <h3>Disney+</h3>
                             <p>Ver mensajes completos de verificación y notificaciones de Disney+</p>
                             <div class="service-instruction">
-                                Ingresa tu correo principal de Disney+ para acceder a todos los mensajes
+                                Ingresa tu correo principal de Disney+ para acceder a todos los códigos de verificación y mensajes importantes.
                             </div>
                         </div>
                     </div>
 
                     <div class="streaming-card" data-service="amazon" onclick="selectService('amazon')">
                         <div class="streaming-icon amazon">
-                            <i class="fa-solid fa-network-wired"></i>
+                            <img src="img/otros.webp" alt="Amazon" class="service-logo">
                         </div>
                         <div class="streaming-content">
                             <h3>Amazon u otros</h3>
                             <p>Ver mensajes completos de Prime Video y otras verificaciones.</p>
                             <div class="service-instruction">
-                                Ingresa tu correo principal de Amazon u otros para acceder a todos los mensajes
+                                Ingresa tu correo principal de Amazon u otros servicios para acceder a todos los códigos de verificación y mensajes importantes.
                             </div>
                         </div>
                     </div>
@@ -296,6 +312,39 @@
                     </div>
                 </div>
             </div>
+            <section class="how-it-works">
+                <div class="info-card">
+                    <div class="info-content">
+                        <h3>
+                            <i class="fas fa-lightbulb"></i>
+                            ¿Cómo Funciona?
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-number">1</div>
+                                <div class="info-text">
+                                    <strong>Selecciona la plataforma</strong>
+                                    <p>Elige Netflix, Disney+, Amazon u otros servicios</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-number">2</div>
+                                <div class="info-text">
+                                    <strong>Ingresa tu correo principal</strong>
+                                    <p>Conecta tu correo principal de la plataforma</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-number">3</div>
+                                <div class="info-text">
+                                    <strong>Accede a los códigos</strong>
+                                    <p>Visualiza todos los códigos de verificación</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 

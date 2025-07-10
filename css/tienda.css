@@ -983,39 +983,5 @@
             }
         }
 
-        // Datos del producto actual
-        const currentProduct = {
-            id: 'win11-pro-001',
-            name: 'Windows 11 Pro Retail Key Global',
-            price: 16.00,
-            image: '../../img/13.webp',
-            category: 'windows-office'
-        };
 
-        // Función para comprar ahora
-        function buyNowProduct() {
-            if (window.hansWebCart) {
-                window.hansWebCart.buyNow(currentProduct);
-            }
-        }
-
-        // Función para añadir al carrito
-        function addToCartProduct() {
-            if (window.hansWebCart) {
-                window.hansWebCart.addItem(currentProduct);
-                
-                // Feedback visual
-                const button = document.querySelector('.btn-add-to-cart-main');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i> Agregado';
-                button.disabled = true;
-                button.style.background = '#28a745';
-
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
-                }, 2000);
-            }
-        }
  
