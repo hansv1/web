@@ -519,6 +519,11 @@ function showLoading(show) {
 }
 
 function showToast(message, type = 'success') {
+    // Usar utilidades globales de HANS5 si están disponibles
+    if (window.HansWeb && window.HansWeb.Utils && window.HansWeb.Utils.showToast) {
+        window.HansWeb.Utils.showToast(message, type);
+        return;
+    }
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
