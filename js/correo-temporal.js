@@ -224,9 +224,6 @@ class TempMailApp {
         const email = this.emails.find(e => e.id === emailId);
         if (!email) return;
         document.getElementById('modalSubject').textContent = email.subject || 'Sin asunto';
-        document.getElementById('modalFrom').textContent = email.from || 'Desconocido';
-        document.getElementById('modalTo').textContent = email.to || this.currentEmail;
-        document.getElementById('modalDate').textContent = this.formatDate(email.timestamp, true);
         const contentDiv = document.getElementById('modalContent');
         if (email.html) {
             const iframe = document.createElement('iframe');

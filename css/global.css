@@ -411,6 +411,8 @@ body {
     margin: 0 auto 20px;
     font-size: 30px;
     color: white;
+            align-items: center;
+    justify-content: center;
 }
 
 .process-item h3 {
@@ -444,8 +446,6 @@ body {
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     transition: var(--transition);
     cursor: pointer;
-    border: 2px solid transparent;
-        text-align: center;
 }
 
 .service-card:hover {

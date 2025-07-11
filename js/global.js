@@ -248,7 +248,7 @@ const Utils = {
 const toastStyles = `
     .toast {
         position: fixed;
-        top: 20px;
+        top: 100px;
         right: 20px;
         background: white;
         border-radius: 8px;
