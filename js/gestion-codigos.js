@@ -60,7 +60,7 @@ function selectService(serviceKey) {
     const service = SERVICES_CONFIG[serviceKey];
     
     const iconElement = document.getElementById('selectedServiceIcon');
-    iconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-logo">`;
+    iconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-img">`;
     iconElement.className = `service-icon-small ${service.iconClass}`;
     
     document.getElementById('selectedServiceName').textContent = service.name;
@@ -98,7 +98,7 @@ function showMessagesSection() {
     
     if (service && platformIconElement && platformNameElement) {
         // Usar imagen en lugar de icono
-        platformIconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-logo">`;
+        platformIconElement.innerHTML = `<img src="${service.image}" alt="${service.name}" class="service-img">`;
         platformIconElement.className = `service-icon-small ${service.iconClass}`;
         platformNameElement.textContent = service.name;
     }
@@ -597,21 +597,21 @@ function handleApiError(error) {
 const SERVICES_CONFIG = {
     netflix: {
         name: 'Netflix',
-        image: 'img/Netflix41x41.webp',
+        image: 'img/Netflix.png',
         iconClass: 'netflix',
         description: 'Mensajes de verificación y notificaciones de Netflix',
         instruction: 'Ingresa tu correo principal de Netflix para ver todos los mensajes de verificación y notificaciones'
     },
     disney: {
         name: 'Disney+',
-        icon: 'fa-solid fa-tv',
+        image: 'img/Disney+.png',
         iconClass: 'disney',
         description: 'Mensajes de acceso y comunicaciones de Disney+',
         instruction: 'Ingresa tu correo principal de Disney+ para ver todos los mensajes de acceso y comunicaciones'
     },
     amazon: {
         name: 'Amazon u otros',
-        icon: 'fab fa-amazon',
+        image: 'img/Prime-Video.png',
         iconClass: 'amazon',
         description: 'Mensajes de Prime Video y verificaciones de otros servicios',
         instruction: 'Ingresa tu correo principal de Amazon para ver todos los mensajes de Prime Video y verificaciones'

@@ -2,6 +2,8 @@
 
 /* Variables específicas */
 :root {
+    --text-mail1:black;
+    --text-mail2:rgb(43, 41, 41);
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
@@ -28,6 +30,7 @@
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     position: relative;
+    margin-bottom: 80px;
 }
 
 .page-header h1 {
@@ -66,13 +69,6 @@
 .breadcrumbs span {
     color: var(--text-primary);
     margin: 0 8px;
-}
-
-/* Navegación activa */
-.nav-link.active {
-    background-color: rgba(11, 98, 106, 0.1);
-    color: var(--primary-color);
-    font-weight: 600;
 }
 
 /* Proceso de Gestion de codigo */
@@ -120,7 +116,7 @@
 /* Generator Section */
 .generator-section {
     margin-bottom: 40px;
-    padding: 30px;
+    padding: auto;
 }
 
 .generator-card {
@@ -138,7 +134,7 @@
 .input-group label {
     display: block;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     margin-bottom: 12px;
     font-size: 1.1rem;
 }
@@ -175,6 +171,7 @@
     margin: 15px 0;
     font-size: 0.95rem;
     line-height: 1.6;
+    color: var(--text-mail2);
 }
 
 .error-message {
@@ -257,6 +254,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    color: var(--text-mail2);
 }
 
 .status-indicator {
@@ -326,7 +324,7 @@
 }
 
 .inbox-header-compact h3 {
-    color: var(--primary-color);
+    color: var(--text-mail1);
     font-size: 1.4rem;
     font-weight: 600;
     display: flex;
@@ -390,6 +388,7 @@
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 20px;
+    margin-top: 15px;
     margin-bottom: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -411,13 +410,13 @@
 
 .email-subject {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     font-size: 1.1rem;
     flex: 1;
 }
 
 .email-date {
-    color: var(--text-muted);
+    color: var(--text-mail2);
     font-size: 0.9rem;
     white-space: nowrap;
 }
@@ -429,7 +428,7 @@
 }
 
 .email-preview {
-    color: var(--text-secondary);
+    color: var(--text-mail2);
     font-size: 0.9rem;
     line-height: 1.4;
 }
@@ -470,7 +469,7 @@
 
 .modal-header-compact h3 {
     margin: 0;
-    color: var(--primary-color);
+    color: var(--text-mail1);
     font-size: 1.3rem;
     font-weight: 600;
     flex: 1;
@@ -482,7 +481,7 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-muted);
+    color: var(--text-mail2);
     padding: 5px;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -490,7 +489,7 @@
 
 .btn-close:hover {
     background: var(--border-color);
-    color: var(--text-primary);
+    color: var(--text-mail1);
 }
 
 .modal-body {
@@ -540,37 +539,33 @@
     border-radius: 8px;
 }
 
+.info-content {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 /* How it Works */
 .how-it-works {
-    margin-top: 50px;
-}
-
-.info-card {
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-}
-
-.info-content h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
+    padding: 40px 0;
+    background: var(--primary-color);
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
+    margin: 50px auto 0; /* arriba 50px, centrado horizontal */
+    position: relative;
+    max-width: 1160px;
 }
 
 .info-item {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: var(--transition);
     display: flex;
     gap: 20px;
     align-items: flex-start;
@@ -588,6 +583,11 @@
     font-weight: 600;
     font-size: 1.2rem;
     flex-shrink: 0;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .info-text strong {
@@ -749,8 +749,6 @@
         gap: 25px;
     }
     
-
-    
     .toast-container {
         left: 10px;
         right: 10px;
@@ -780,5 +778,10 @@
     .email-address {
         font-size: 1rem;
         word-break: break-all;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 }
