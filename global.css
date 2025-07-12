@@ -662,3 +662,9 @@ input:focus {
     outline-offset: 2px;
 }
 
+html, body {
+    background-color: var(--bg-dark); /* Color sólido para todo el fondo */
+    color: var(--text-primary);
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+}
