@@ -132,21 +132,21 @@ function setupInteractiveElements() {
 
 // Función global para navegación entre servicios - CORREGIDA
 function navigateToService(url) {
-    // Verificar que la URL sea válida
     if (!url) {
         console.error('URL no válida para navegación');
         return;
     }
-    
-    // Efecto de transición suave
-    document.body.style.opacity = '0.8';
-    
+
+    // Agrega clase de transición
+    document.body.classList.add('fade-out');
+
+    // Espera la animación antes de redirigir
     setTimeout(() => {
         try {
             window.location.href = url;
         } catch (error) {
             console.error('Error en navegación:', error);
-            document.body.style.opacity = '1'; // Restaurar opacidad si hay error
+            document.body.classList.remove('fade-out');
         }
     }, 200);
 }
