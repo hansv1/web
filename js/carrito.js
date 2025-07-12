@@ -268,7 +268,6 @@ class ShoppingCart {
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
-                    <div class="cart-item-subtotal">Subtotal: S/ ${(item.price * item.quantity).toFixed(2)}</div>
                 </div>
             </div>
         `;

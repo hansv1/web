@@ -2,8 +2,8 @@
 
 /* Variables específicas */
 :root {
-    --primary-color: #0b626a;
-    --secondary-color: #f8f9fa;
+    --text-mail1:black;
+    --text-mail2:rgb(43, 41, 41);
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
@@ -16,13 +16,14 @@
 
 /* Header de página */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0891b2 100%);
+    background: var(--primary-color);
     color: white;
     padding: 40px 0;
     text-align: center;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     position: relative;
+    margin-bottom: 80px;
 }
 
 .page-header h1 {
@@ -38,6 +39,28 @@
     margin: 0 auto;
     margin-bottom: 30px;
     opacity: 0.9;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: var(--primary-color);
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: var(--text-primary);
+    margin: 0 8px;
 }
 
 /* Proceso de Gestion de codigo */
@@ -63,7 +86,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.1);
+    background: var(--bg-card);
     padding: 10px 20px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -91,8 +114,7 @@
 
 /* Service Selection */
 .service-selection {
-    padding: 80px 0 0px 0;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
 .selection-header {
@@ -121,58 +143,32 @@
 }
 
 .streaming-card {
-    background: white;
+    background: var(--bg-card);
+    border: 1px solid var(--border-dark);
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     transition: var(--transition);
     cursor: pointer;
-    border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    gap: 20px;
 }
-
 
 .streaming-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     border-color: var(--primary-color);
-}
-
-.streaming-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(135deg, var(--primary-color), #0891b2);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.streaming-card:hover::before {
-    transform: scaleX(1);
-    
-}
-
-.streaming-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-    margin-bottom: 20px;
+    background: var(--bg-hover);
 }
 
 .service-logo {
-    object-fit: contain;
-    display: block;
-    text-align: center;        
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+    position: relative;
 }
 
 .streaming-content h3 {
@@ -189,8 +185,8 @@
 }
 
 .service-instruction {
-    background: rgba(11, 98, 106, 0.1);
-    color: var(--primary-color);
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
     padding: 12px 15px;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -201,7 +197,7 @@
 /* Email Input Section */
 .email-input-section {
     margin-bottom: 40px;
-    padding: 30px;
+    padding: auto;
 }
 
 .input-card {
@@ -261,12 +257,12 @@
 .selected-service-info h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     margin: 0;
 }
 
 .selected-service-info p {
-    color: var(--text-secondary);
+    color: var(--text-mail2);
     margin: 0;
     font-size: 0.95rem;
 }
@@ -278,7 +274,7 @@
 .input-form label {
     display: block;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     margin-bottom: 12px;
     font-size: 1.1rem;
 }
@@ -332,7 +328,7 @@
 /* Messages Section */
 .messages-section {
     margin-bottom: 40px;
-    padding: 30px;
+    padding: auto;
 }
 
 .selected-platform-header {
@@ -351,7 +347,7 @@
 
 .platform-name {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     font-size: 1.1rem;
 }
 
@@ -399,7 +395,7 @@
 }
 
 .btn-copy {
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -410,7 +406,7 @@
 }
 
 .btn-copy:hover {
-    background: rgba(11, 98, 106, 0.8);
+    background: var(--bg-hover);
     transform: translateY(-2px);
 }
 
@@ -420,6 +416,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    color: var(--text-mail2);
 }
 
 .status-indicator {
@@ -496,7 +493,7 @@
 }
 
 .inbox-header-compact h3 {
-    color: var(--primary-color);
+    color: var(--text-mail1);
     font-size: 1.4rem;
     font-weight: 600;
     display: flex;
@@ -560,6 +557,7 @@
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 20px;
+    margin-top: 15px;
     margin-bottom: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -581,13 +579,13 @@
 
 .email-subject {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-mail1);
     font-size: 1.1rem;
     flex: 1;
 }
 
 .email-date {
-    color: var(--text-muted);
+    color: var(--text-mail2);
     font-size: 0.9rem;
     white-space: nowrap;
 }
@@ -599,7 +597,7 @@
 }
 
 .email-preview {
-    color: var(--text-secondary);
+    color: var(--text-mail2);
     font-size: 0.9rem;
     line-height: 1.4;
 }
@@ -640,7 +638,7 @@
 
 .modal-header-compact h3 {
     margin: 0;
-    color: var(--primary-color);
+    color: var(--text-mail1);
     font-size: 1.3rem;
     font-weight: 600;
     flex: 1;
@@ -652,7 +650,7 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-muted);
+    color: var(--text-mail2);
     padding: 5px;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -660,7 +658,7 @@
 
 .btn-close:hover {
     background: var(--border-color);
-    color: var(--text-primary);
+    color: var(--text-mail1);
 }
 
 .modal-body {
@@ -710,37 +708,33 @@
     border-radius: 8px;
 }
 
+.info-content {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 /* How it Works */
 .how-it-works {
-    margin-top: 50px;
-}
-
-.info-card {
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-}
-
-.info-content h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
+    padding: 40px 0;
+    background: var(--primary-color);
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
+    margin: 50px auto 0; /* arriba 50px, centrado horizontal */
+    position: relative;
+    max-width: 1160px;
 }
 
 .info-item {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: var(--transition);
     display: flex;
     gap: 20px;
     align-items: flex-start;
@@ -758,6 +752,11 @@
     font-weight: 600;
     font-size: 1.2rem;
     flex-shrink: 0;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .info-text strong {
@@ -867,6 +866,10 @@
         padding: 20px;
     }
     
+    .info-grid {
+    padding: 15px;
+    }
+
     .input-header {
         flex-direction: column;
         align-items: stretch;
@@ -943,6 +946,9 @@
     .toast {
         max-width: none;
     }
+
+
+    
 }
 
 @media (max-width: 480px) {
@@ -969,26 +975,9 @@
     .selected-platform-header {
         padding: 12px 15px;
     }
+
+    .info-grid {
+    padding: 15px;
+    }  
 }
 
-/* Breadcrumbs */
-.breadcrumbs {
-    background: var(--secondary-color);
-    padding: 15px 0;
-    font-size: 0.9rem;
-}
-
-.breadcrumbs a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.breadcrumbs a:hover {
-    text-decoration: underline;
-}
-
-.breadcrumbs span {
-    color: var(--text-secondary);
-    margin: 0 8px;
-}

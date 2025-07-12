@@ -1,20 +1,11 @@
 /* Estilos específicos para la tienda */
 
 /* Estados activos en navegación */
-.nav-link.active {
-    background-color: rgba(11, 98, 106, 0.1);
-    color: var(--primary-color);
-}
-
-.sidebar-link.active {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-}
 
 /* Botón del carrito */
 .cart-btn {
     position: relative;
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: white;
     border: none;
     border-radius: 50%;
@@ -29,7 +20,7 @@
 }
 
 .cart-btn:hover {
-    background: rgba(11, 98, 106, 0.8);
+    background: var(--bg-hover);
     transform: scale(1.05);
 }
 
@@ -61,7 +52,7 @@
     right: -100%;
     width: 400px;
     height: 100dvh;
-    background: var(--background-color);
+    background: var(--secondary-color);
     box-shadow: -5px 0 20px rgba(0,0,0,0.15);
     transition: var(--transition);
     z-index: 2000;
@@ -178,7 +169,7 @@
 }
 
 .cart-item-price {
-    color: var(--primary-color);
+    color: var(--text-secondary);
     font-weight: 600;
     font-size: 0.9rem;
 }
@@ -197,8 +188,8 @@
 }
 
 .quantity-btn {
-    background: var(--secondary-color);
-    border: 1px solid #dee2e6;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--text-primary);
     width: 25px;
     height: 25px;
@@ -212,7 +203,7 @@
 }
 
 .quantity-btn:hover {
-    background: #e9ecef;
+    background: var(--bg-hover);
     border-color: var(--primary-color);
 }
 
@@ -245,13 +236,6 @@
 
 .remove-item-btn:hover {
     background: #c82333;
-}
-
-.cart-item-subtotal {
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    margin-top: 5px;
 }
 
 /* Footer del carrito */
@@ -334,13 +318,13 @@
 
 /* Breadcrumbs */
 .breadcrumbs {
-    background: var(--secondary-color);
+    background: var(--primary-color);
     padding: 15px 0;
     font-size: 0.9rem;
 }
 
 .breadcrumbs a {
-    color: var(--primary-color);
+    color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -350,13 +334,13 @@
 }
 
 .breadcrumbs span {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin: 0 8px;
 }
 
 /* Cabecera de tienda */
 .store-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0891b2 100%);
+    background: var(--primary-color);
     color: white;
     padding: 40px 0;
     text-align: center;
@@ -403,7 +387,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.1);
+    background: var(--secondary-color);
     padding: 10px 20px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -434,7 +418,7 @@
 }
 
 .category-card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
@@ -450,12 +434,13 @@
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     border-color: var(--primary-color);
+    background: var(--bg-hover);
 }
 
 .category-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-color), #0891b2);
+    background: var(--primary-color);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -489,8 +474,8 @@
 }
 
 .keyword-tag {
-    background: rgba(11, 98, 106, 0.1);
-    color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--text-primary);
     padding: 3px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -498,7 +483,7 @@
 }
 
 .category-arrow {
-    color: var(--primary-color);
+    color: var(--text-primary);
     font-size: 20px;
     transition: var(--transition);
     flex-shrink: 0;
@@ -548,7 +533,7 @@
     border: 1px solid #dee2e6;
     border-radius: 8px;
     background: white;
-    color: var(--text-primary);
+    color: black;
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
@@ -567,18 +552,17 @@
 
 /* Tarjeta de producto */
 .product-card {
-    background: white;
+    background: var(--bg-hover);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 3px 15px rgba(0,0,0,0.08);
     transition: var(--transition);
-    border: 1px solid transparent;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-color: var(--primary-color);
+    border-color: var(--secondary-color);
 }
 
 .product-image {
@@ -616,19 +600,19 @@
 }
 
 .product-title:hover {
-    color: var(--primary-color);
+    color: var(--text-secondary);
 }
 
 .product-price {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--text-primary);
     margin-bottom: 15px;
 }
 
 .add-to-cart-btn {
     width: 100%;
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: white;
     border: none;
     padding: 12px;
@@ -643,7 +627,7 @@
 }
 
 .add-to-cart-btn:hover {
-    background: rgba(11, 98, 106, 0.8);
+    background: var(--bg-dark);
     transform: translateY(-2px);
 }
 
@@ -785,6 +769,7 @@
 }
         /* Estilos específicos para página de producto individual */
         .product-detail {
+            background: var( --bg-dark);
             padding: 40px 0;
         }
         
@@ -821,7 +806,6 @@
         }
         
         .product-features {
-            background: var(--secondary-color);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
@@ -861,7 +845,7 @@
         .product-price-main {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 25px;
         }
         
@@ -893,7 +877,7 @@
         }
         
         .btn-add-to-cart-main {
-            background: var(--primary-color);
+            background: var(--secondary-color);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -915,7 +899,7 @@
         
         .product-description {
             padding: 40px 0;
-            background: var(--secondary-color);
+            background: var(--bg-dark);
         }
         
         .description-content {
@@ -954,7 +938,8 @@
         }
         
         .requirement-item {
-            background: white;
+            background: var(--bg-card);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             padding: 20px;
             border-radius: 10px;
             border-left: 4px solid var(--primary-color);
@@ -992,6 +977,7 @@
                 grid-template-columns: 1fr;
             }
         }
+
 
 
  
