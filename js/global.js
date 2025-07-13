@@ -132,21 +132,21 @@ function setupInteractiveElements() {
 
 // Función global para navegación entre servicios - CORREGIDA
 function navigateToService(url) {
+    // Verificar que la URL sea válida
     if (!url) {
         console.error('URL no válida para navegación');
         return;
     }
-
-    // Agrega clase de transición
-    document.body.classList.add('fade-out');
-
-    // Espera la animación antes de redirigir
+    
+    // Efecto de transición suave
+    document.body.style.opacity = '0.8';
+    
     setTimeout(() => {
         try {
             window.location.href = url;
         } catch (error) {
             console.error('Error en navegación:', error);
-            document.body.classList.remove('fade-out');
+            document.body.style.opacity = '1'; // Restaurar opacidad si hay error
         }
     }, 200);
 }
@@ -277,7 +277,7 @@ const toastStyles = `
         display: flex;
         align-items: center;
         gap: 10px;
-        color: var(--text-primary);
+        color: black;
         font-weight: 500;
     }
     

@@ -649,7 +649,7 @@
 }
 
 .toast span {
-    color: var(--text-primary);
+    color: black;
     font-weight: 500;
 }
 
