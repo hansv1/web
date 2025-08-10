@@ -340,36 +340,60 @@ class TempMailApp {
     }
 
     formatDate(timestamp, detailed = false) {
-        if (!timestamp) return 'Fecha desconocida';
-        const date = new Date(timestamp * 1000);
-        const now = new Date();
-        const diffMs = now - date;
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        if (detailed) {
-            return date.toLocaleString('es-ES', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-        if (diffDays === 0) {
-            return date.toLocaleTimeString('es-ES', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            });
-        } else if (diffDays === 1) {
-            return 'Ayer';
-        } else if (diffDays < 7) {
-            return `Hace ${diffDays} días`;
-        } else {
-            return date.toLocaleDateString('es-ES', {
-                day: 'numeric',
-                month: 'short'
-            });
-        }
+    if (!timestamp) return 'Fecha desconocida';
+
+    let date;
+    if (typeof timestamp === 'number' && timestamp < 10000000000) {
+        // Timestamp en segundos
+        date = new Date(timestamp * 1000);
+    } else {
+        // Timestamp en milisegundos o string parseable
+        date = new Date(timestamp);
     }
+
+    if (isNaN(date.getTime())) return 'Fecha inválida';
+
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (detailed) {
+        return date.toLocaleString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    if (diffMs < 0) {
+        // Fecha futura
+        return date.toLocaleDateString('es-ES');
+    }
+    if (diffMinutes < 1) {
+        return 'Ahora';
+    }
+    if (diffMinutes < 60) {
+        return `${diffMinutes}min`;
+    }
+    if (diffHours < 24) {
+        return `${diffHours}h`;
+    }
+    if (diffDays === 1) {
+        return 'Ayer';
+    }
+    if (diffDays < 7) {
+        return `Hace ${diffDays} días`;
+    }
+
+    return date.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short'
+    });
+}
 
     escapeHtml(text) {
         if (!text) return '';
@@ -413,4 +437,5 @@ window.addEventListener('beforeunload', () => {
     if (tempMailApp && tempMailApp.refreshInterval) {
         clearInterval(tempMailApp.refreshInterval);
     }
+
 });
