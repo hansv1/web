@@ -344,17 +344,15 @@ class TempMailApp {
 
     let date;
     if (typeof timestamp === 'number' && timestamp < 10000000000) {
-        // Timestamp en segundos
         date = new Date(timestamp * 1000);
     } else {
-        // Timestamp en milisegundos o string parseable
         date = new Date(timestamp);
     }
 
     if (isNaN(date.getTime())) return 'Fecha inválida';
 
     const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
+    const diffMs = now - date;
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -369,24 +367,19 @@ class TempMailApp {
         });
     }
 
-    if (diffMs < 0) {
-        // Fecha futura
-        return date.toLocaleDateString('es-ES');
-    }
-    if (diffMinutes < 1) {
-        return 'Ahora';
-    }
+    if (diffMs < 0) return date.toLocaleDateString('es-ES');
+    if (diffMinutes < 1) return 'Ahora';
     if (diffMinutes < 60) {
-        return `${diffMinutes}min`;
+        return `Hace ${diffMinutes} ${diffMinutes === 1 ? 'minuto' : 'minutos'}`;
     }
     if (diffHours < 24) {
-        return `${diffHours}h`;
+        return `Hace ${diffHours} ${diffHours === 1 ? 'hora' : 'horas'}`;
     }
     if (diffDays === 1) {
         return 'Ayer';
     }
     if (diffDays < 7) {
-        return `Hace ${diffDays} días`;
+        return `Hace ${diffDays} ${diffDays === 1 ? 'día' : 'días'}`;
     }
 
     return date.toLocaleDateString('es-ES', {
@@ -439,3 +432,4 @@ window.addEventListener('beforeunload', () => {
     }
 
 });
+
