@@ -226,6 +226,17 @@ class TempMailApp {
         document.getElementById('modalSubject').textContent = email.subject || 'Sin asunto';
         const contentDiv = document.getElementById('modalContent');
         if (email.html) {
+        // Inyecta script para forzar target="_blank" en todos los enlaces del email
+        const script = `
+            <script>
+                window.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('a').forEach(a => {
+                        a.setAttribute('target', '_blank');
+                        a.setAttribute('rel', 'noopener noreferrer');
+                    });
+                });
+            <\/script>
+        `;
             const iframe = document.createElement('iframe');
             iframe.srcdoc = email.html;
             iframe.style.width = '100%';
@@ -432,4 +443,5 @@ window.addEventListener('beforeunload', () => {
     }
 
 });
+
 
