@@ -278,7 +278,7 @@ function renderEmails(messages) {
     const emailList = document.getElementById('emailList');
     
     // Función auxiliar para formatear fechas
-    const formatEmailDate(timestamp, detailed = false) {
+    function formatEmailDate(timestamp, detailed = false) {
     if (!timestamp) return 'Fecha desconocida';
 
     let date;
@@ -639,4 +639,5 @@ const SERVICES_CONFIG = {
     }
 
 };
+
 
