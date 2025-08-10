@@ -278,33 +278,45 @@ function renderEmails(messages) {
     const emailList = document.getElementById('emailList');
     
     // Función auxiliar para formatear fechas
-    const formatEmailDate = (timestamp) => {
-        try {
-            let date = new Date(timestamp);
-            
-            if (typeof timestamp === 'number' && timestamp < 10000000000) {
-                date = new Date(timestamp * 1000);
-            }
-            
-            if (isNaN(date.getTime())) return 'Fecha inválida';
-            
-            const now = new Date();
-            const diffMs = now.getTime() - date.getTime();
-            const diffMinutes = Math.floor(diffMs / (1000 * 60));
-            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-            
-            if (diffMs < 0) return date.toLocaleDateString('es-ES');
-            if (diffMinutes < 1) return 'Ahora';
-            if (diffMinutes < 60) return `${diffMinutes}min`;
-            if (diffHours < 24) return `${diffHours}h`;
-            if (diffDays < 7) return `${diffDays}d`;
-            return date.toLocaleDateString('es-ES');
-            
-        } catch (error) {
-            return 'Fecha inválida';
-        }
-    };
+const formatEmailDate(timestamp) {
+    if (!timestamp) return 'Fecha desconocida';
+
+    let date;
+    if (typeof timestamp === 'number' && timestamp < 10000000000) {
+        date = new Date(timestamp * 1000);
+    } else {
+        date = new Date(timestamp);
+    }
+
+    if (isNaN(date.getTime())) return 'Fecha inválida';
+
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffMs < 0) return date.toLocaleDateString('es-ES');
+    if (diffMinutes < 1) return 'Ahora';
+    if (diffMinutes < 60) {
+        return `Hace ${diffMinutes} ${diffMinutes === 1 ? 'minuto' : 'minutos'}`;
+    }
+    if (diffHours < 24) {
+        return `Hace ${diffHours} ${diffHours === 1 ? 'hora' : 'horas'}`;
+    }
+    if (diffDays === 1) {
+        return 'Ayer';
+    }
+    if (diffDays < 7) {
+        return `Hace ${diffDays} ${diffDays === 1 ? 'día' : 'días'}`;
+    }
+
+    return date.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short'
+    });
+}
+
     
     if (!messages || messages.length === 0) {
         const serviceName = SERVICES_CONFIG[currentService]?.name || 'este servicio';
@@ -616,4 +628,5 @@ const SERVICES_CONFIG = {
         description: 'Mensajes de Prime Video y verificaciones de otros servicios',
         instruction: 'Ingresa tu correo principal de Amazon para ver todos los mensajes de Prime Video y verificaciones'
     }
+
 };
