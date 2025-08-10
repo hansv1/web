@@ -278,7 +278,7 @@ function renderEmails(messages) {
     const emailList = document.getElementById('emailList');
     
     // Función auxiliar para formatear fechas
-const formatEmailDate(timestamp) {
+    const formatEmailDate(timestamp, detailed = false) {
     if (!timestamp) return 'Fecha desconocida';
 
     let date;
@@ -295,6 +295,16 @@ const formatEmailDate(timestamp) {
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (detailed) {
+        return date.toLocaleString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
 
     if (diffMs < 0) return date.toLocaleDateString('es-ES');
     if (diffMinutes < 1) return 'Ahora';
@@ -317,7 +327,6 @@ const formatEmailDate(timestamp) {
     });
 }
 
-    
     if (!messages || messages.length === 0) {
         const serviceName = SERVICES_CONFIG[currentService]?.name || 'este servicio';
         emailList.innerHTML = `
@@ -630,3 +639,4 @@ const SERVICES_CONFIG = {
     }
 
 };
+
