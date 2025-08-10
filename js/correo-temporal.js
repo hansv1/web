@@ -220,14 +220,16 @@ class TempMailApp {
         `).join('');
     }
 
-    openEmailModal(emailId) {
-        const email = this.emails.find(e => e.id === emailId);
-        if (!email) return;
-        document.getElementById('modalSubject').textContent = email.subject || 'Sin asunto';
-        const contentDiv = document.getElementById('modalContent');
-        if (email.html) {
-        // Inyecta script para forzar target="_blank" en todos los enlaces del email
-        const script = `
+openEmailModal(emailId) {
+    const email = this.emails.find(e => e.id === emailId);
+    if (!email) return;
+
+    document.getElementById('modalSubject').textContent = email.subject || 'Sin asunto';
+    const contentDiv = document.getElementById('modalContent');
+
+    if (email.html) {
+        // Script que se inyectará en el iframe para modificar los enlaces
+        const forceLinksToNewTab = `
             <script>
                 window.addEventListener('DOMContentLoaded', function() {
                     document.querySelectorAll('a').forEach(a => {
@@ -237,22 +239,27 @@ class TempMailApp {
                 });
             <\/script>
         `;
-            const iframe = document.createElement('iframe');
-            iframe.srcdoc = email.html;
-            iframe.style.width = '100%';
-            iframe.style.minHeight = '400px';
-            iframe.style.border = '1px solid var(--border-color)';
-            iframe.style.borderRadius = '8px';
-            contentDiv.innerHTML = '';
-            contentDiv.appendChild(iframe);
-        } else if (email.text) {
-            contentDiv.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${this.escapeHtml(email.text)}</pre>`;
-        } else {
-            contentDiv.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Este email no tiene contenido.</p>';
-        }
-        this.elements.emailModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+
+        const iframe = document.createElement('iframe');
+        iframe.srcdoc = email.html + forceLinksToNewTab;
+        iframe.style.width = '100%';
+        iframe.style.minHeight = '400px';
+        iframe.style.border = '1px solid var(--border-color)';
+        iframe.style.borderRadius = '8px';
+
+        contentDiv.innerHTML = '';
+        contentDiv.appendChild(iframe);
+
+    } else if (email.text) {
+        contentDiv.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${this.escapeHtml(email.text)}</pre>`;
+    } else {
+        contentDiv.innerHTML = '<p style="color: var(--text-muted); font-style: italic;">Este email no tiene contenido.</p>';
     }
+
+    this.elements.emailModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
 
     closeModal() {
         this.elements.emailModal.classList.add('hidden');
@@ -443,5 +450,6 @@ window.addEventListener('beforeunload', () => {
     }
 
 });
+
 
 
