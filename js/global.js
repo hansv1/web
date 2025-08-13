@@ -277,7 +277,7 @@ const toastStyles = `
         display: flex;
         align-items: center;
         gap: 10px;
-        color: var(--text-primary);
+        color: #000000ff;
         font-weight: 500;
     }
     

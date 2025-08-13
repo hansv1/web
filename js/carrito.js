@@ -81,7 +81,7 @@ class ShoppingCart {
                 id: productCard.dataset.productId || this.generateProductId(),
                 name: productCard.querySelector('.product-title')?.textContent?.trim() || 'Producto',
                 price: this.extractPrice(productCard.querySelector('.product-price')?.textContent || '0'),
-                image: productCard.querySelector('.product-image img')?.src || '../img/placeholder.jpg',
+                image: productCard.querySelector('.product-image img')?.src || '../img/noimage.webp',
                 category: productCard.dataset.category || 'general'
             };
         } else {
@@ -92,7 +92,7 @@ class ShoppingCart {
                     id: productData.productId,
                     name: document.querySelector('.product-name, h1')?.textContent?.trim() || 'Producto',
                     price: parseFloat(productData.price) || this.extractPrice(document.querySelector('.product-price-main')?.textContent || '0'),
-                    image: document.querySelector('.product-image-main img')?.src || '../img/placeholder.jpg',
+                    image: document.querySelector('.product-image-main img')?.src || '../img/noimage.webp',
                     category: productData.category || 'general'
                 };
             } else {
@@ -249,7 +249,7 @@ class ShoppingCart {
         return `
             <div class="cart-item" data-product-id="${item.id}">
                 <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}" onerror="this.src='../img/placeholder.jpg'">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='../img/noimage.webp'">
                 </div>
                 <div class="cart-item-details">
                     <div class="cart-item-name">${this.escapeHtml(item.name)}</div>
