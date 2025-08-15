@@ -407,6 +407,30 @@ class ShoppingCart {
         return message;
     }
 
+    buyNowFromCard(button) {
+        const productCard = button.closest('.product-card');
+
+        if (!productCard) {
+            console.error('No se pudo encontrar la tarjeta del producto.');
+            return;
+        }
+
+        const productName = productCard.querySelector('.product-title')?.textContent?.trim();
+        const productPriceText = productCard.querySelector('.product-price')?.textContent;
+
+        const productPriceMatch = productPriceText?.match(/(\d+\.?\d*)/);
+        const productPrice = productPriceMatch ? parseFloat(productPriceMatch[1]) : 0;
+
+        if (!productName || !productPrice) {
+            console.error('No se pudo extraer la información completa del producto.');
+            return;
+        }
+
+        const message = `¡Hola! Quiero comprar este producto desde HANS WEB:\n\n- ${productName}: S/ ${productPrice.toFixed(2)}\n\n¡Gracias!`;
+        const whatsappUrl = `https://wa.me/51965485348?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+
     // Guardar en localStorage
     saveToStorage() {
         try {

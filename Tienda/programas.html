@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            background-color: #0b626a;
+            color: #333333;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas - Tienda Digital - HANS WEB</title>
     <meta name="description" content="Software especializado y herramientas profesionales para diseño, desarrollo y productividad">
     <meta name="keywords" content="Photoshop, Illustrator, AutoCAD, software profesional, herramientas diseño">
@@ -141,10 +149,9 @@
         <div class="breadcrumbs">
             <div class="container">
                 <a href="../index.html">Inicio</a>
-                <span>/</span>
+                /
                 <a href="../tienda.html">Tienda</a>
-                <span>/</span>
-                <span>Programas</span>
+                / Programas
             </div>
         </div>
 
@@ -168,61 +175,93 @@
                 <!-- Grid de productos -->
                 <div class="products-grid" id="productsGrid">
                     <!-- Adobe Photoshop -->
-                    <div class="product-card" data-product-id="photoshop-2024-001" data-category="programas" data-price="25.00">
+                    <div class="product-card" data-product-id="photoshop-2024-001" data-category="programas" data-price="5.00">
                         <div class="product-image" onclick="openProduct('Programas/photoshop.html')">
                             <img src="../img/canva.webp" alt="Adobe Photoshop 2024" onerror="this.src='../img/placeholder.jpg'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-title" onclick="openProduct('Programas/photoshop.html')">Canva Pro EDU - Individual (Indefinido)</h3>
-                            <div class="product-price">S/ 25.00</div>
+                            <h3 class="product-title" onclick="openProduct('Programas/photoshop.html')">Canva Pro EDU (Individual)</h3>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Cuenta personal en tu correo con suscripción indefinida.</p>
+                                </ul>  
+                            </h3>
+                            <div class="product-price">S/ 5.00</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
 
                     <!-- Adobe Illustrator -->
-                    <div class="product-card" data-product-id="illustrator-2024-001" data-category="programas" data-price="22.00">
+                    <div class="product-card" data-product-id="illustrator-2024-001" data-category="programas" data-price="42.00">
                         <div class="product-image" onclick="openProduct('Programas/illustrator.html')">
                             <img src="../img/canva-admin.jpg" alt="Adobe Illustrator 2024" onerror="this.src='../img/placeholder.jpg'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-title" onclick="openProduct('Programas/illustrator.html')">Canva Pro EDU - Admin Panel (Indefinido)</h3>
-                            <div class="product-price">S/ 22.00</div>
+                            <h3 class="product-title" onclick="openProduct('Programas/illustrator.html')">Canva Pro EDU (Admin Panel)</h3>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Cuenta para administrar usuarios ilimitados con suscripción indefinida.</p>
+                                </ul>  
+                            </h3>
+                            <div class="product-price">S/ 42.00</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
 
                     <!-- AutoCAD -->
-                    <div class="product-card" data-product-id="autocad-2024-001" data-category="programas" data-price="35.00">
+                    <div class="product-card" data-product-id="autocad-2024-001" data-category="programas" data-price="17.81">
                         <div class="product-image" onclick="openProduct('Programas/autocad.html')">
                             <img src="../img/Autodesk-tienda.webp" alt="AutoCAD 2024" onerror="this.src='../img/placeholder.jpg'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-title" onclick="openProduct('Programas/autocad.html')">Autodesk Suite EDU - Individual (1 año)</h3>
-                            <div class="product-price">S/ 35.00</div>
+                            <h3 class="product-title" onclick="openProduct('Programas/autocad.html')">Autodesk Suite EDU (Individual)</h3>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Cuenta personal en tu correo con suscripción de 3 o 1 año.</p>
+                                </ul>  
+                            </h3>
+                            <div class="product-price">S/ 17.81</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
 
                     <!-- Corel Draw -->
-                    <div class="product-card" data-product-id="coreldraw-2024-001" data-category="programas" data-price="20.00">
+                    <div class="product-card" data-product-id="coreldraw-2024-001" data-category="programas" data-price="106.88">
                         <div class="product-image" onclick="openProduct('Programas/coreldraw.html')">
                             <img src="../img/Autodesk-admin.png" alt="CorelDRAW 2024" onerror="this.src='../img/placeholder.jpg'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-title" onclick="openProduct('Programas/coreldraw.html')">Autodesk Suite EDU - Admin Panel (1 año)</h3>
-                            <div class="product-price">S/ 20.00</div>
+                            <h3 class="product-title" onclick="openProduct('Programas/coreldraw.html')">Autodesk Suite EDU (Admin Panel)</h3>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Cuenta para administrar 3000 o 250 usuarios con suscripción de 3 o 1 año.</p>
+                                </ul>  
+                            </h3>
+                            <div class="product-price">S/ 106.88</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
@@ -234,25 +273,41 @@
                         </div>
                         <div class="product-info">
                             <h3 class="product-title" onclick="openProduct('Programas/visualstudio.html')">Antivirus Mcafee Total Protection 1 Pc 3 Años</h3>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Recibirá una licencia alfanumérica de 15 caracteres.</p>
+                                </ul>  
+                            </h3>
                             <div class="product-price">S/ 30.00</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
 
                     <!-- Premiere Pro -->
-                    <div class="product-card" data-product-id="premiere-2024-001" data-category="programas" data-price="24.00">
+                    <div class="product-card" data-product-id="premiere-2024-001" data-category="programas" data-price="30.00">
                         <div class="product-image" onclick="openProduct('Programas/premiere.html')">
                             <img src="../img/Avast.png" alt="Adobe Premiere Pro 2024" onerror="this.src='../img/placeholder.jpg'">
                         </div>
                         <div class="product-info">
                             <h3 class="product-title" onclick="openProduct('Programas/premiere.html')">Antivirus Avast Premium Security 1 Dispositivo 1 año</h3>
-                            <div class="product-price">S/ 24.00</div>
+                            <h3 class="product-sub">
+                                <ul>
+                                    <p>Recibirá una llave o archivo de licencia original.</p>
+                                </ul>  
+                            </h3>
+                            <div class="product-price">S/ 30.00</div>
                             <button class="add-to-cart-btn">
                                 <i class="fas fa-cart-plus"></i>
                                 Agregar al Carrito
+                            <button class="btn-buy-now-a" onclick="window.HansWeb.buyNowFromCard(this)">
+                                <i class="fab fa-whatsapp"></i>
+                                Comprar Ahora
                             </button>
                         </div>
                     </div>
