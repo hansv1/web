@@ -184,9 +184,17 @@
 
 .amazon {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
-    justify-content: center;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crea 3 columnas de igual ancho */
+    gap: 10px; /* Espacio entre los elementos de la cuadrícula */
+    justify-items: center;
+    align-items: center;
 }
 
 .streaming-content h3 {
@@ -202,6 +210,7 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .service-instruction {
@@ -212,6 +221,7 @@
     font-size: 0.9rem;
     font-weight: 500;
     border-left: 3px solid var(--primary-color);
+    text-align: justify;
 }
 
 /* Email Input Section */

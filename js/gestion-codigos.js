@@ -15,7 +15,7 @@ const TESTMAIL_CONFIG = {
 const STREAMING_FILTERS = {
     netflix: ['netflix', 'nflx', 'netflix.com', 'nflix', 'netflixtv'],
     disney: ['disney+', 'disney plus', 'disneyplus', 'disney', 'disney.com'],
-    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', 'openai']
+    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', 'openai', 'deezer']
 };
 
 // Frases prohibidas por servicio
@@ -631,11 +631,11 @@ const SERVICES_CONFIG = {
         instruction: 'Ingresa tu correo principal de Disney+ para ver todos los mensajes de acceso y comunicaciones'
     },
     amazon: {
-        name: 'Amazon u otros',
-        image: 'img/Prime-Video.png',
+        name: 'Otras plataformas',
+        image: 'img/otros.webp',
         iconClass: 'amazon',
-        description: 'Mensajes de Prime Video y verificaciones de otros servicios',
-        instruction: 'Ingresa tu correo principal de Amazon para ver todos los mensajes de Prime Video y verificaciones'
+        description: 'Mensajes y verificaciones de otros servicios',
+        instruction: 'Ingresa tu correo principal para acceder a todos los códigos de verificación y mensajes importantes.'
     }
 
 };
