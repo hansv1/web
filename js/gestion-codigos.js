@@ -15,7 +15,7 @@ const TESTMAIL_CONFIG = {
 const STREAMING_FILTERS = {
     netflix: ['netflix', 'nflx', 'netflix.com', 'nflix', 'netflixtv'],
     disney: ['disney+', 'disney plus', 'disneyplus', 'disney', 'disney.com'],
-    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'amazon.com', 'amazonprime', 'openai', 'deezer']
+    amazon: ['prime video', 'primevideo', 'amazon prime', 'amazon', 'prime', 'perplexity', 'amazonprime', 'openai', 'deezer']
 };
 
 // Frases prohibidas por servicio
